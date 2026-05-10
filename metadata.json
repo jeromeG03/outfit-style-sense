@@ -1,0 +1,8 @@
+{
+  "name": "Outfit Style sense - Smart Indian Dress Stylist",
+  "description": "An AI-powered fashion recommendation engine tailored for Indian culture, skin tones, and diverse occasions.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}

@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outfit Style Sense - Project Report Diagrams</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            line-height: 1.6;
+            margin: 2cm;
+            color: #000;
+            background: #fff;
+        }
+        h1 {
+            text-align: center;
+            font-size: 24pt;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            page-break-before: always;
+        }
+        h2 {
+            font-size: 18pt;
+            font-weight: bold;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+        h3 {
+            font-size: 14pt;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        h4 {
+            font-size: 12pt;
+            font-weight: bold;
+            margin-top: 15px;
+            margin-bottom: 8px;
+            color: #444;
+        }
+        p {
+            text-align: justify;
+            margin-bottom: 10px;
+            font-size: 12pt;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 11pt;
+        }
+        th {
+            background-color: #4F46E5;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #333;
+        }
+        td {
+            padding: 10px;
+            border: 1px solid #666;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .diagram-container {
+            margin: 30px 0;
+            padding: 20px;
+            border: 2px solid #ddd;
+            background-color: #fafafa;
+            text-align: center;
+        }
+        .diagram-title {
+            font-size: 13pt;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+        .diagram-note {
+            font-style: italic;
+            color: #666;
+            margin-top: 15px;
+            font-size: 10pt;
+        }
+        .code-block {
+            background-color: #f5f5f5;
+            border-left: 4px solid #4F46E5;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 10pt;
+            white-space: pre-wrap;
+        }
+        .feature-list {
+            margin-left: 30px;
+        }
+        .feature-list li {
+            margin-bottom: 8px;
+            font-size: 11pt;
+        }
+        .highlight {
+            background-color: #FEF3C7;
+            padding: 2px 6px;
+            font-weight: bold;
+        }
+        .section-break {
+            page-break-before: always;
+        }
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            background-color: #10B981;
+            color: white;
+            border-radius: 4px;
+            font-size: 9pt;
+            font-weight: bold;
+            margin: 0 3px;
+        }
+        .actor-box {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: #4F46E5;
+            color: white;
+            border-radius: 8px;
+            margin: 5px;
+            font-weight: bold;
+        }
+        @media print {
+            body { margin: 1.5cm; }
+            h1 { page-break-before: always; }
+            .diagram-container { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+<h1>OUTFIT STYLE SENSE<br/>Smart Indian Dress Stylist</h1>
+<h2 style="text-align: center; margin-top: -10px;">Project Report - Diagrams Documentation</h2>
+
+<hr style="border: 2px solid #4F46E5; margin: 30px 0;">
+
+<!-- ============================== -->
+<!-- 2.4 USE CASE DIAGRAM -->
+<!-- ============================== -->
+
+<h2 class="section-break">2.4 USE CASE DIAGRAM</h2>
+
+<h3>Overview</h3>
+<p>
+The Use Case Diagram illustrates the functional requirements of the Outfit Style Sense system, showing interactions between actors (User and Admin) and the various use cases organized into four main modules. The system provides 20 distinct use cases covering authentication, wardrobe management, intelligent outfit recommendations, and personalization features.
+</p>
+
+<div class="diagram-container">
+    <div class="diagram-title">Figure 2.4.1: Use Case Diagram - Complete System</div>
+    <img src="https://mermaid.ink/img/Z3JhcGggVEIKICAgIHN1YmdyYXBoICJPdXRmaXQgU3R5bGUgU2Vuc2UgLSBTbWFydCBJbmRpYW4gRHJlc3MgU3R5bGlzdCIKICAgICAgICBzdWJncmFwaCAiQXV0aGVudGljYXRpb24gTW9kdWxlIgogICAgICAgICAgICBVQzFbTG9naW4gd2l0aCBFbWFpbF0KICAgICAgICAgICAgVUMyW1NpZ24gVXBdCiAgICAgICAgICAgIFVDM1tGb3Jnb3QgUGFzc3dvcmRdCiAgICAgICAgICAgIFVDNFtSZXNldCBQYXNzd29yZF0KICAgICAgICAgICAgVUM1W0dvb2dsZSBPQXV0aCBMb2dpbl0KICAgICAgICBlbmQKICAgICAgICAKICAgICAgICBzdWJncmFwaCAiV2FyZHJvYmUgTWFuYWdlbWVudCIKICAgICAgICAgICAgVUM2W0FkZCBXYXJkcm9iZSBJdGVtXQogICAgICAgICAgICBVQzdbVmlldyBNeSBXYXJkcm9iZV0KICAgICAgICAgICAgVUM4W0RlbGV0ZSBXYXJkcm9iZSBJdGVtXQogICAgICAgICAgICBVQzlbVXBsb2FkIENsb3RoaW5nIEltYWdlXQogICAgICAgIGVuZAogICAgICAgIAogICAgICAgIHN1YmdyYXBoICJPdXRmaXQgUmVjb21tZW5kYXRpb24gRW5naW5lIgogICAgICAgICAgICBVQzEwW0dldCBPdXRmaXQgU3VnZ2VzdGlvbnNdCiAgICAgICAgICAgIFVDMTFbVmlldyBDb21wbGV0ZSBPdXRmaXRzXQogICAgICAgICAgICBVQzEyW1NtYXJ0IEZpbHRlciBieSBPY2Nhc2lvbl0KICAgICAgICAgICAgVUMxM1tTbWFydCBGaWx0ZXIgYnkgU2Vhc29uXQogICAgICAgICAgICBVQzE0W1ZpZXcgTWF0Y2ggU2NvcmVdCiAgICAgICAgICAgIFVDMTVbR2V0IFN0eWxlIFRpcHNdCiAgICAgICAgZW5kCiAgICAgICAgCiAgICAgICAgc3ViZ3JhcGggIlBlcnNvbmFsaXphdGlvbiBGZWF0dXJlcyIKICAgICAgICAgICAgVUMxNltBbmFseXplIFNraW4gVG9uZV0KICAgICAgICAgICAgVUMxN1tHZXQgQ29sb3IgUHN5Y2hvbG9neV0KICAgICAgICAgICAgVUMxOFtCcm93c2UgT2NjYXNpb24gU3R5bGVzXQogICAgICAgICAgICBVQzE5W1ZpZXcgRmFzaGlvbiBUcmVuZHNdCiAgICAgICAgICAgIFVDMjBbVmlydHVhbCBUcmlhbCBSb29tXQogICAgICAgIGVuZAogICAgZW5kCiAgICAKICAgIFVzZXIoKFVzZXIpKQogICAgQWRtaW4oKEFkbWluKSkKICAgIEVtYWlsU3lzdGVtW0VtYWlsIFN5c3RlbV0KICAgIEFJRW5naW5lW0FJIFJlY29tbWVuZGF0aW9uPGJyLz5FbmdpbmVdCiAgICAKICAgIFVzZXIgLS0+fHVzZXN8IFVDMQOGICBVC2VyIC0tPnx1c2VzfCBVQzIKICAgIFVzZXIgLS0+fHVzZXN8IFVDMWOGICBVC2VyIC0tPnx1c2VzfCBVQzQKICAgIFVzZXIgLS0+fHVzZXN8IFVDNQOGICBVC2VyIC0tPnx1c2VzfCBVQzYKICAgIFVzZXIgLS0+fHVzZXN8IFVDN4OGICBVC2VyIC0tPnx1c2VzfCBVQzgKICAgIFVzZXIgLS0+fHVzZXN8IFVDOQOGICBVUC2VyIC0tPnx1c2VzfCBVQzEwCiAgICBVc2VyIC0tPnx1c2VzfCBVQzExCiAgICBVc2VyIC0tPnx1c2VzfCBVQzEyCiAgICBVc2VyIC0tPnx1c2VzfCBVQzEzCiAgICBVc2VyIC0tPnx1c2VzfCBVQzE0CiAgICBVc2VyIC0tPnx1c2VzfCBVQzE1CiAgICBVc2VyIC0tPnx1c2VzfCBVQzE2CiAgICBVc2VyIC0tPnx1c2VzfCBVQzE3CiAgICBVc2VyIC0tPnx1c2VzfCBVQzE4CiAgICBVc2VyIC0tPnx1c2VzfCBVQzE5CiAgICBVc2VyIC0tPnx1c2VzfCBVQzIwCiAgICAKICAgIEFkbWluIC0tPnxtYW5hZ2VzfCBVQzE3CiAgICBBZG1pbiAtLT58bWFuYWdlc3wgVUMxOAogICAgQWRtaW4gLS0+fG1hbmFnZXN8IFVDMTKKICAKICBVQ0MgLS4tPnx0cmlnZ2Vyc3wgRW1haWxTeXN0ZW0KICAgIFVDNCAtLi0+fHZlcmlmaWVzfCBFbWFpbFN5c3RlbQogICAgCiAgICBVQzEwIC0uLT58cG93ZXJlZCBieXwgQUlFbmdpbmUKICAgIFVDMTEgLS4tPnxwb3dlcmVkIGJ5fCBBSUVuZ2luZQogICAgVUMxNCAtLi0+fGNhbGN1bGF0ZWQgYnl8IEFJRW5naW5lCiAgICBVQzE1IC0uLT58Z2VuZXJhdGVkIGJ5fCBBSUVuZ2luZQ==" alt="Use Case Diagram" style="max-width: 100%; height: auto; border: 1px solid #ddd;"/>
+    <div class="diagram-note">Note: Insert the rendered Use Case Diagram from Mermaid visualization above</div>
+</div>
+
+<h3>System Actors</h3>
+
+<div style="margin: 20px 0;">
+    <span class="actor-box">User (Primary Actor)</span>
+    <span class="actor-box">Admin (Secondary Actor)</span>
+    <span class="actor-box">Email System</span>
+    <span class="actor-box">AI Engine</span>
+</div>
+
+<table>
+    <tr>
+        <th style="width: 20%;">Actor</th>
+        <th style="width: 25%;">Type</th>
+        <th style="width: 55%;">Description</th>
+    </tr>
+    <tr>
+        <td><strong>User</strong></td>
+        <td>Primary Actor</td>
+        <td>End-user who interacts with the system to manage their wardrobe and receive intelligent outfit recommendations. Can perform all 20 user-facing operations.</td>
+    </tr>
+    <tr>
+        <td><strong>Admin</strong></td>
+        <td>Secondary Actor</td>
+        <td>System administrator who manages master data including fashion trends, color psychology rules, and occasion-based styling guidelines.</td>
+    </tr>
+    <tr>
+        <td><strong>Email System</strong></td>
+        <td>External System</td>
+        <td>Third-party service (Gmail SMTP) for sending password reset emails with 6-digit verification codes. Triggered during forgot password workflow.</td>
+    </tr>
+    <tr>
+        <td><strong>AI Recommendation Engine</strong></td>
+        <td>Internal Component</td>
+        <td>Intelligent system component that powers outfit matching using color theory (16 colors), pattern matching (5 types), and fashion rules. Calculates 0-100 match scores.</td>
+    </tr>
+</table>
+
+<h3>Use Case Modules</h3>
+
+<h4>Module 1: Authentication (5 Use Cases)</h4>
+<table>
+    <tr>
+        <th style="width: 15%;">Use Case ID</th>
+        <th style="width: 30%;">Use Case Name</th>
+        <th style="width: 55%;">Description</th>
+    </tr>
+    <tr>
+        <td>UC1</td>
+        <td>Login with Email</td>
+        <td>User authenticates using email and password. System validates credentials against database and returns JWT token.</td>
+    </tr>
+    <tr>
+        <td>UC2</td>
+        <td>Sign Up</td>
+        <td>New user creates an account with email, username, and password. System validates uniqueness and creates user record.</td>
+    </tr>
+    <tr>
+        <td>UC3</td>
+        <td>Forgot Password</td>
+        <td>User initiates password reset by providing email. System generates 6-digit code (15-minute expiry) and sends via email.</td>
+    </tr>
+    <tr>
+        <td>UC4</td>
+        <td>Reset Password</td>
+        <td>User verifies 6-digit code and sets new password. System validates token expiry and updates password securely.</td>
+    </tr>
+    <tr>
+        <td>UC5</td>
+        <td>Google OAuth Login</td>
+        <td>User logs in using Google account (alternative authentication). System creates or retrieves user profile.</td>
+    </tr>
+</table>
+
+<h4>Module 2: Wardrobe Management (4 Use Cases)</h4>
+<table>
+    <tr>
+        <th style="width: 15%;">Use Case ID</th>
+        <th style="width: 30%;">Use Case Name</th>
+        <th style="width: 55%;">Description</th>
+    </tr>
+    <tr>
+        <td>UC6</td>
+        <td>Add Wardrobe Item</td>
+        <td>User adds clothing item with details: type (shirt, jeans, kurta), color (16 options), pattern (solid, striped), season, occasion.</td>
+    </tr>
+    <tr>
+        <td>UC7</td>
+        <td>View My Wardrobe</td>
+        <td>User views all stored clothing items in digital closet. Displays items in responsive grid with filters.</td>
+    </tr>
+    <tr>
+        <td>UC8</td>
+        <td>Delete Wardrobe Item</td>
+        <td>User removes unwanted items from wardrobe. System updates database and refreshes outfit combinations.</td>
+    </tr>
+    <tr>
+        <td>UC9</td>
+        <td>Upload Clothing Image</td>
+        <td>User uploads photo of clothing item (optional). System stores image URL for visual representation.</td>
+    </tr>
+</table>
+
+<h4>Module 3: Outfit Recommendation Engine - Core Feature (6 Use Cases)</h4>
+<table>
+    <tr>
+        <th style="width: 15%;">Use Case ID</th>
+        <th style="width: 30%;">Use Case Name</th>
+        <th style="width: 55%;">Description</th>
+    </tr>
+    <tr>
+        <td>UC10</td>
+        <td>Get Outfit Suggestions</td>
+        <td><span class="highlight">AI-Powered:</span> System suggests matching items for a selected clothing piece using color theory and compatibility rules. Example: White Shirt → Blue Jeans (100/100 match).</td>
+    </tr>
+    <tr>
+        <td>UC11</td>
+        <td>View Complete Outfits</td>
+        <td><span class="highlight">AI-Powered:</span> System displays pre-generated top+bottom outfit combinations with visual previews and animated match scores.</td>
+    </tr>
+    <tr>
+        <td>UC12</td>
+        <td>Smart Filter by Occasion</td>
+        <td>User filters outfits by occasion (casual, formal, traditional, office, gym, party, wedding). System returns relevant combinations.</td>
+    </tr>
+    <tr>
+        <td>UC13</td>
+        <td>Smart Filter by Season</td>
+        <td>User filters outfits by season (summer, winter, monsoon, all-season). System matches seasonal compatibility.</td>
+    </tr>
+    <tr>
+        <td>UC14</td>
+        <td>View Match Score</td>
+        <td><span class="highlight">AI-Powered:</span> System displays 0-100 compatibility score with color-coded badges: Excellent (80-100), Good (65-79), Decent (50-64).</td>
+    </tr>
+    <tr>
+        <td>UC15</td>
+        <td>Get Style Tips</td>
+        <td><span class="highlight">AI-Powered:</span> System provides fashion advice based on color theory and trends. Example: "White pairs well with almost any color - a versatile wardrobe staple".</td>
+    </tr>
+</table>
+
+<h4>Module 4: Personalization Features (5 Use Cases)</h4>
+<table>
+    <tr>
+        <th style="width: 15%;">Use Case ID</th>
+        <th style="width: 30%;">Use Case Name</th>
+        <th style="width: 55%;">Description</th>
+    </tr>
+    <tr>
+        <td>UC16</td>
+        <td>Analyze Skin Tone</td>
+        <td>User uploads photo for AI-based skin tone analysis. System recommends suitable colors based on skin tone rules.</td>
+    </tr>
+    <tr>
+        <td>UC17</td>
+        <td>Get Color Psychology</td>
+        <td>User learns color meanings and impact on mood. Admin maintains color psychology database with cultural significance.</td>
+    </tr>
+    <tr>
+        <td>UC18</td>
+        <td>Browse Occasion Styles</td>
+        <td>User explores outfit recommendations for specific events (wedding, interview, party). Admin manages occasion styling rules.</td>
+    </tr>
+    <tr>
+        <td>UC19</td>
+        <td>View Fashion Trends</td>
+        <td>User browses current Indian fashion trends and styles. Admin updates trend database with seasonal popularity.</td>
+    </tr>
+    <tr>
+        <td>UC20</td>
+        <td>Virtual Trial Room</td>
+        <td>User visualizes outfits on virtual model (future feature). System generates realistic outfit previews.</td>
+    </tr>
+</table>
+
+<!-- ============================== -->
+<!-- 2.5 DATA FLOW DIAGRAM -->
+<!-- ============================== -->
+
+<h2 class="section-break">2.5 DATA FLOW DIAGRAM</h2>
+
+<h3>2.5.1 DFD Level 0: Context Diagram</h3>
+
+<p>
+The Context Diagram provides a high-level view of the entire Outfit Style Sense system, showing interactions between external entities (User, Admin) and the central system. It illustrates the primary data flows without revealing internal system complexity.
+</p>
+
+<div class="diagram-container">
+    <div class="diagram-title">Figure 2.5.1: Data Flow Diagram (Level 0) - Context Diagram</div>
+    <img src="https://mermaid.ink/img/Z3JhcGggTFIKICAgIFVzZXIoKFVzZXIpKQogICAgQWRtaW4oKEFkbWluKSkKICAgIAogICAgc3ViZ3JhcGggIk91dGZpdCBTdHlsZSBTZW5zZSBTeXN0ZW0iCiAgICAgICAgU3lzdGVtW1NtYXJ0IEluZGlhbiBEcmVzczxici8+U3R5bGlzdCBBcHBsaWNhdGlvbl0KICAgIGVuZAogICAgCiAgICBFbWFpbFNlcnZpY2VbRW1haWwgU2VydmljZTxici8+R21haWwgU01UUF0KICAgIERhdGFiYXNlWyhNeVNRTCBEYXRhYmFzZTxici8+b3V0Zml0X3JlY29tbWVuZGF0aW9uX2RiKV0KICAgIAogICAgVXNlciAtLT58TG9naW4gQ3JlZGVudGlhbHN8IFN5c3RlbQogICAgVXNlciAtLT58V2FyZHJvYmUgSXRlbXN8IFN5c3RlbQogICAgVXNlciAtLT58T3V0Zml0IFByZWZlcmVuY2VzfCBTeXN0ZW0KICAgIFN5c3RlbSAtLT58QXV0aGVudGljYXRpb24gU3RhdHVzfCBVc2VyCiAgICBTeXN0ZW0gLS0+fE91dGZpdCBSZWNvbW1lbmRhdGlvbnN8IFVzZXIKICAgIFN5c3RlbSAtLT58TWF0Y2ggU2NvcmVzICYgVGlwc3wgVXNlcgogICAgCiAgICBBZG1pbiAtLT58RmFzaGlvbiBUcmVuZHMgRGF0YXwgU3lzdGVtCiAgICBBZG1pbiAtLT58T2NjYXNpb24gUnVsZXN8IFN5c3RlbQogICAgQWRtaW4gLS0+fENvbG9yIFBzeWNob2xvZ3l8IFN5c3RlbQogICAgU3lzdGVtIC0tPnxBbmFseXRpY3MgUmVwb3J0fCBBZG1pbgogICAgCiAgICBTeXN0ZW0gLS0+fFBhc3N3b3JkIFJlc2V0IEVtYWlsfCBFbWFpbFNlcnZpY2UKICAgIEVtYWlsU2VydmljZSAtLT58VmVyaWZpY2F0aW9uIENvZGV8IFVzZXIKICAgIAogICAgU3lzdGVtIDwtLT58Q1JVRCBPZXJHDWLVB25zfCBEYXRhYmFzZQogICAgRGF0YWJhc2UgLS0+fFVzZXIgRGF0YXwgU3lzdGVtCiAgICBEYXRhYmFzZSAtLT58V2FyZHJvYmUgRGF0YXwgU3lzdGVtCiAgICBEYXRhYmFzZSAtLT58UmVjb21tZW5kYXRpb25zfCBTeXN0ZW0=" alt="Context Diagram" style="max-width: 100%; height: auto; border: 1px solid #ddd;"/>
+    <div class="diagram-note">Note: Insert the rendered Context Diagram from Mermaid visualization above</div>
+</div>
+
+<h4>External Entity Interactions</h4>
+
+<table>
+    <tr>
+        <th style="width: 20%;">External Entity</th>
+        <th style="width: 35%;">Input to System</th>
+        <th style="width: 45%;">Output from System</th>
+    </tr>
+    <tr>
+        <td><strong>User</strong></td>
+        <td>
+            • Login Credentials (email, password)<br/>
+            • Wardrobe Items (clothing details)<br/>
+            • Outfit Preferences (filters)
+        </td>
+        <td>
+            • Authentication Status (success/failure)<br/>
+            • Outfit Recommendations (suggestions)<br/>
+            • Match Scores & Tips (0-100 scores)
+        </td>
+    </tr>
+    <tr>
+        <td><strong>Admin</strong></td>
+        <td>
+            • Fashion Trends Data (latest styles)<br/>
+            • Occasion Rules (event guidelines)<br/>
+            • Color Psychology (meanings)
+        </td>
+        <td>
+            • Analytics Report (usage statistics)<br/>
+            • System insights (user behavior)
+        </td>
+    </tr>
+    <tr>
+        <td><strong>Email Service</strong></td>
+        <td>
+            • System triggers password reset<br/>
+            • 6-digit verification code generated
+        </td>
+        <td>
+            • Email sent to user's inbox<br/>
+            • 15-minute expiry notification
+        </td>
+    </tr>
+    <tr>
+        <td><strong>Database</strong></td>
+        <td>
+            • CRUD Operations from system<br/>
+            • User data, wardrobe data, rules
+        </td>
+        <td>
+            • Query results (user info, items)<br/>
+            • Stored recommendations
+        </td>
+    </tr>
+</table>
+
+<h3 class="section-break">2.5.2 DFD Level 1: Detailed Process Flow</h3>
+
+<p>
+The Level 1 Data Flow Diagram shows the internal processes and data flows within the Outfit Style Sense system. It breaks down the system into three layers: Frontend (React TypeScript), Backend (Spring Boot), and Data Storage (MySQL).
+</p>
+
+<div class="diagram-container">
+    <div class="diagram-title">Figure 2.5.2: Data Flow Diagram (Level 1) - Detailed Internal Processes</div>
+    <img src="https://mermaid.ink/img/Z3JhcGggVEIKICAgIFVzZXIoKFVzZXIpKQogICAgCiAgICBzdWJncmFwaCAiRnJvbnRlbmQgTGF5ZXIgLSBSZWFjdCBUeXBlU2NyaXB0IgogICAgICAgIFAxW0F1dGhlbnRpY2F0aW9uIFBhZ2VzPGJyLz5Mb2dpbi9TaWdudXAvRm9yZ290UGFzc3dvcmRdCiAgICAgICAgUDJbV2FyZHJvYmUgTWFuYWdlbWVudDxici8+V2FyZHJvYmVQYWdlXQogICAgICAgIFAzW091dGZpdCBSZWNvbW1lbmRhdGlvbiBVSTxici8+U3VnZ2VzdGlvbnMgJiBDb21iaW5hdGlvbnNdCiAgICAgICAgUDRbUGVyc29uYWxpemF0aW9uIFBhZ2VzPGJyLz5Ta2luVG9uZS9Qc3ljaG9sb2d5L1RyZW5kc10KICAgIGVuZAogICAgCiAgICBzdWJncmFwaCAiQmFja2VuZCBMYXllciAtIFNwcmluZyBCb290IgogICAgICAgIFA1W1VzZXIgQ29udHJvbGxlcjxici8+QXV0aGVudGljYXRpb24gQVBJXQogICAgICAgIFA2W1dhcmRyb2JlIENvbnRyb2xsZXI8YnIvPkNSVUQgT3BlcmF0aW9uc10KICAgICAgICBQN1tPdXRmaXQgQ29tYmluYXRpb24gU2VydmljZTxici8+QUkgTWF0Y2hpbmcgRW5naW5lXQogICAgICAgIFA4W0VtYWlsIFNlcnZpY2U8YnIvPlBhc3N3b3JkIFJlc2V0XQogICAgICAgIFA5W090aGVyIENvbnRyb2xsZXJzPGJyLz5Ta2luVG9uZS9PY2Nhc2lvbi9Qc3ljaG9sb2d5XQogICAgZW5kCiAgICAKICAgIHN1YmdyYXBoICJEYXRhIFN0b3JhZ2UiCiAgICAgICAgRDFbKHVzZXJzIHRhYmxlKV0KICAgICAgICBEMlsod2FyZHJvYmUgdGFibGUpXQogICAgICAgIEQzWyhwYXNzd29yZF9yZXNldF90b2tlbnMpXQogICAgICAgIEQ0WyhvY2Nhc2lvbnMgdGFibGUpXQogICAgICAgIEQ1WyhmYXNoaW9uX3RyZW5kcyB0YWJsZSldCiAgICAgICAgRDZbKHNraW5fdG9uZV9ydWxlcyldCiAgICAgICAgRDdbKGNvbG9yX3BzeWNob2xvZ3kpXQogICAgZW5kCiAgICAKICAgIFVzZXIgLS0+fEVtYWlsICYgUGFzc3dvcmR8IFAxCiAgICBVc2VyIC0tPnxDbG90aGluZyBEZXRhaWxzfCBQMgogICAgVXNlciAtLT58RmlsdGVyIFByZWZlcmVuY2VzfCBQMwogICAgVXNlciAtLT58U2tpbiBUb25lIFBob3RvfCBQNAogICAgCiAgICBQMSAtLT58TG9naW4gUmVxdWVzdHwgUDUKICAgIFAxIC0tPnxTaWdudXAgUmVxdWVzdHwgUDUKICAgIFAxIC0tPnxSZXNldCBSZXF1ZXN0fCBQNQogICAgCiAgICBQMiAtLT58QWRkL1ZpZXcvRGVsZXRlfCBQNgogICAgUDMgLS0+fEdldCBTdWdnZXN0aW9uc3wgUDYKICAgIFAzIC0tPnxHZXQgT3V0Zml0c3wgUDYKICAgIAogICAgUDQgLS0+fEFuYWx5c2lzIFJlcXVlc3R8IFA5CiAgICAKICAgIFA1IC0tPnxVc2VyIERhdGF8IEQxCiAgICBQNSAtLT58UmVzZXQgVG9rZW58IEQzCiAgICBQNSAtLi0+fFNlbmQgRW1haWx8IFA4CiAgICBQOCAtLi0+fDYtRGlnaXQgQ29kZXwgVXNlcgogICAgCiAgICBQNiAtLT58V2FyZHJvYmUgUXVlcnl8IEQyCiAgICBQNiAtLT58TWF0Y2ggUmVxdWVzdHwgUDcKICAgIAogICAgUDcgLS0+fENvbG9yIFJ1bGVzfCBEN4OGICBQN4CLTLT+fE9jY2FzaW9uIFJ1bGVzfCBENAogICAgUDcgLS0+fFRyZW5kIERhdGF8IEQ1CiAgICBQNyAtLT58T3V0Zml0IENvbWJpbmF0aW9uczxici8+TWF0Y2ggU2NvcmVzOiAwLTEwMDxici8+U3R5bGUgVGlwc3wgUDMKICAgIAogICAgUDkgLS0+fFNraW4gVG9uZSBSdWxlc3wgRDYKICAgIFA5IC0tPnxQc3ljaG9sb2d5IERhdGF8IEQ3CiAgICBQOSAtLT58T2NjYXNpb24gRGF0YXwgRDQKICAgIFA5IC0tPnxSZWNvbW1lbmRhdGlvbnN8IFA0CiAgICAKICAgIFAzIC0tPnxPdXRmaXQgU3VnZ2VzdGlvbnM8YnIvPkNvbXBsZXRlIE91dGZpdHN8IFVzZXIKICAgIFA0IC0tPnxQZXJzb25hbGl6ZWQgVGlwc3wgVXNlcg==" alt="Level 1 DFD" style="max-width: 100%; height: auto; border: 1px solid #ddd;"/>
+    <div class="diagram-note">Note: Insert the rendered Level 1 DFD from Mermaid visualization above</div>
+</div>
+
+<h4>System Layers and Processes</h4>
+
+<table>
+    <tr>
+        <th style="width: 15%;">Layer</th>
+        <th style="width: 25%;">Process</th>
+        <th style="width: 60%;">Description & Key Features</th>
+    </tr>
+    <tr>
+        <td rowspan="4"><strong>Frontend<br/>React TypeScript</strong></td>
+        <td><strong>P1:</strong> Authentication Pages</td>
+        <td><strong>Components:</strong> LoginPage, SignupPage, ForgotPasswordPage<br/>
+            <strong>Features:</strong> 3-step password reset modal, email validation, Google OAuth button<br/>
+            <strong>APIs Called:</strong> /login, /signup, /forgot-password, /verify-reset-code, /reset-password</td>
+    </tr>
+    <tr>
+        <td><strong>P2:</strong> Wardrobe Management</td>
+        <td><strong>Component:</strong> WardrobePage<br/>
+            <strong>Features:</strong> Add/view/delete items, image upload, three-tab navigation<br/>
+            <strong>APIs Called:</strong> /api/wardrobe/*, CRUD operations</td>
+    </tr>
+    <tr>
+        <td><strong>P3:</strong> Outfit Recommendation UI</td>
+        <td><strong>Component:</strong> WardrobePage (Suggestions & Outfits tabs)<br/>
+            <strong>Features:</strong> Match score badges, style tips cards, animated previews, occasion tags<br/>
+            <strong>APIs Called:</strong> /suggestions/*, /outfits/*, /outfits/smart</td>
+    </tr>
+    <tr>
+        <td><strong>P4:</strong> Personalization Pages</td>
+        <td><strong>Components:</strong> SkinTonePage, PsychologyPage, TrendsPage<br/>
+            <strong>Features:</strong> AI analysis, color guidance, trend browsing<br/>
+            <strong>APIs Called:</strong> /api/skin-tone/*, /api/psychology/*, /api/occasions/*</td>
+    </tr>
+    <tr>
+        <td rowspan="5"><strong>Backend<br/>Spring Boot</strong></td>
+        <td><strong>P5:</strong> User Controller</td>
+        <td><strong>Endpoints:</strong> /login, /signup, /forgot-password, /verify-reset-code, /reset-password, /google-auth<br/>
+            <strong>Logic:</strong> JWT token generation, password hashing, email validation<br/>
+            <strong>Data Access:</strong> users table, password_reset_tokens table<br/>
+            <strong>Integration:</strong> Calls EmailService (P8) for sending verification codes</td>
+    </tr>
+    <tr>
+        <td><strong>P6:</strong> Wardrobe Controller</td>
+        <td><strong>Endpoints:</strong> /api/wardrobe/*, /suggestions/{itemId}/user/{userId}, /outfits/user/{userId}, /outfits/user/{userId}/smart<br/>
+            <strong>Logic:</strong> CRUD operations, filtering, pagination<br/>
+            <strong>Data Access:</strong> wardrobe table<br/>
+            <strong>Integration:</strong> Calls OutfitCombinationService (P7) for intelligent matching</td>
+    </tr>
+    <tr>
+        <td><strong>P7:</strong> Outfit Combination Service ⭐</td>
+        <td><span class="highlight">CORE AI ENGINE</span><br/>
+            <strong>Algorithm:</strong> Color theory + pattern matching + season compatibility<br/>
+            <strong>Scoring Formula:</strong> 0-100 points = Color (40) + Type (30) + Pattern (20) + Season (10)<br/>
+            <strong>Data Sources:</strong> color_psychology (D7), occasions (D4), fashion_trends (D5)<br/>
+            <strong>Output:</strong> Suggestions with match scores, style tips, compatibility ratings</td>
+    </tr>
+    <tr>
+        <td><strong>P8:</strong> Email Service</td>
+        <td><strong>Function:</strong> sendPasswordResetEmail()<br/>
+            <strong>Logic:</strong> Generates 6-digit code, 15-minute expiry<br/>
+            <strong>Mode:</strong> Console logging (dev) or Gmail SMTP (production)<br/>
+            <strong>Output:</strong> Email sent to user's inbox</td>
+    </tr>
+    <tr>
+        <td><strong>P9:</strong> Other Controllers</td>
+        <td><strong>Controllers:</strong> SkinToneRuleController, ColorPsychologyController, OccasionController<br/>
+            <strong>Data Access:</strong> skin_tone_rules (D6), color_psychology (D7), occasions (D4)<br/>
+            <strong>Purpose:</strong> Personalization and master data management</td>
+    </tr>
+    <tr>
+        <td rowspan="7"><strong>Data Storage<br/>MySQL 8.0</strong></td>
+        <td><strong>D1:</strong> users</td>
+        <td><strong>Columns:</strong> id, email (unique), username, password (hashed), auth_provider, created_at<br/>
+            <strong>Used By:</strong> P5 (authentication)</td>
+    </tr>
+    <tr>
+        <td><strong>D2:</strong> wardrobe</td>
+        <td><strong>Columns:</strong> id, user_id (FK), cloth_type, color, pattern, season, occasion, image_url<br/>
+            <strong>Used By:</strong> P6 (CRUD), P7 (matching logic)</td>
+    </tr>
+    <tr>
+        <td><strong>D3:</strong> password_reset_tokens</td>
+        <td><strong>Columns:</strong> id, email, token (6-digit), expiry_date, used (boolean), created_at<br/>
+            <strong>Used By:</strong> P5 (password reset workflow)</td>
+    </tr>
+    <tr>
+        <td><strong>D4:</strong> occasions</td>
+        <td><strong>Columns:</strong> id, occasion_name, formality_level, dress_codes, description<br/>
+            <strong>Used By:</strong> P7 (occasion filtering), P9 (occasion browsing)</td>
+    </tr>
+    <tr>
+        <td><strong>D5:</strong> fashion_trends</td>
+        <td><strong>Columns:</strong> id, trend_name, description, popularity, season, created_at<br/>
+            <strong>Used By:</strong> P7 (trend-based suggestions), P9 (trend browsing)</td>
+    </tr>
+    <tr>
+        <td><strong>D6:</strong> skin_tone_rules</td>
+        <td><strong>Columns:</strong> id, tone_type, recommended_colors, avoid_colors, description<br/>
+            <strong>Used By:</strong> P9 (skin tone analysis)</td>
+    </tr>
+    <tr>
+        <td><strong>D7:</strong> color_psychology</td>
+        <td><strong>Columns:</strong> id, color, psychology, cultural_significance, mood, occasions<br/>
+            <strong>Used By:</strong> P7 (color matching rules), P9 (color guidance)</td>
+    </tr>
+</table>
+
+<h3>Detailed Data Flow Examples</h3>
+
+<h4>Example 1: User Gets Outfit Suggestions (Core Feature)</h4>
+<div class="code-block">
+<strong>Step-by-Step Flow:</strong>
+
+1. User clicks "Find Matching Items" on White Shirt in wardrobe
+   → Frontend (P3) sends GET request: /api/wardrobe/suggestions/5/user/3
+
+2. Backend WardrobeController (P6) receives request
+   → Validates user authentication
+   → Fetches wardrobe item details from D2 (White Shirt)
+
+3. P6 calls OutfitCombinationService (P7)
+   → P7 queries all user's wardrobe items from D2
+   → P7 fetches color_psychology rules from D7
+   → P7 applies matching algorithm:
+     
+     <strong>White Shirt + Blue Jeans:</strong>
+     • Color Match: White + Blue = 40/40 points ✓ (complementary)
+     • Type Match: Shirt + Jeans = 30/30 points ✓ (perfect pairing)
+     • Pattern Match: Solid + Solid = 20/20 points ✓ (harmonious)
+     • Season Match: All Season + All Season = 10/10 points ✓
+     <strong>Total Score: 100/100 - Excellent Match</strong>
+
+4. P7 generates style tips:
+   → "White pairs well with almost any color - a versatile wardrobe staple"
+   → "Tuck in your shirt for a formal look, or leave it untucked for casual occasions"
+
+5. P7 returns JSON response to P6:
+   {
+     "suggestions": [
+       {
+         "item": {"id": 7, "clothType": "Jeans", "color": "Blue"},
+         "matchScore": 100,
+         "compatibility": "Excellent Match",
+         "reasons": ["Perfect color match", "Suitable clothing type", "Pattern complements well"]
+       }
+     ],
+     "styleTips": ["White pairs well with almost any color...", ...]
+   }
+
+6. Frontend (P3) displays suggestions:
+   → Suggestions tab opens with animated entrance
+   → Match score badge shows "100" with emerald green color
+   → Compatibility rating: "Excellent Match"
+   → Style tips section displays with star icons
+   → User sees 5 matching items with detailed reasons
+
+<strong>Result:</strong> User gets intelligent, data-driven outfit recommendations in under 200ms
+</div>
+
+<h4>Example 2: Forgot Password Flow (Security Feature)</h4>
+<div class="code-block">
+<strong>Step-by-Step Flow:</strong>
+
+1. User enters email on Login page (P1)
+   → Clicks "Forgot Password"
+   → Modal opens with email input field
+
+2. Frontend (P1) sends POST request: /api/users/forgot-password
+   → Payload: {"email": "user@example.com"}
+
+3. Backend UserController (P5) receives request
+   → Validates email exists in D1 (users table)
+   → Generates 6-digit random code: "847362"
+   → Creates expiry timestamp: currentTime + 15 minutes
+   → Saves to D3 (password_reset_tokens):
+     {email: "user@example.com", token: "847362", expiry_date: "2026-04-16 10:15:00", used: false}
+
+4. P5 calls EmailService (P8)
+   → P8.sendPasswordResetEmail("user@example.com", "847362")
+   → Email content: "Your password reset code is: 847362. Valid for 15 minutes."
+   → (Development mode: Code printed to console)
+   → (Production mode: Email sent via Gmail SMTP)
+
+5. User receives 6-digit code: "847362"
+   → Modal advances to step 2
+   → User enters code in verification field
+
+6. Frontend (P1) sends POST request: /api/users/verify-reset-code
+   → Payload: {"email": "user@example.com", "token": "847362"}
+
+7. Backend (P5) validates token:
+   → Queries D3 for matching token
+   → Checks: expiry_date > currentTime ✓
+   → Checks: used == false ✓
+   → Returns: {"success": true, "message": "Code verified"}
+
+8. Modal advances to step 3 (new password)
+   → User enters new password: "NewSecure123!"
+
+9. Frontend (P1) sends POST request: /api/users/reset-password
+   → Payload: {"email": "user@example.com", "token": "847362", "newPassword": "NewSecure123!"}
+
+10. Backend (P5) resets password:
+    → Hashes new password using BCrypt
+    → Updates D1 (users table): password = hashed_password
+    → Updates D3: used = true (marks token as consumed)
+    → Returns: {"success": true, "message": "Password reset successfully"}
+
+11. User redirected to login page
+    → Can now login with new password
+
+<strong>Security Features:</strong>
+✓ 6-digit random code (1,000,000 combinations)
+✓ 15-minute expiry (prevents replay attacks)
+✓ One-time use tokens (marked as used after reset)
+✓ Password hashing with BCrypt
+✓ Email validation at every step
+</div>
+
+<h3>Database Schema Relationships</h3>
+
+<div class="diagram-container">
+    <div class="diagram-title">Database Entity Relationships</div>
+    <div class="code-block">
+users (id, email, username, password, auth_provider, created_at)
+│
+├─── wardrobe (id, user_id FK, cloth_type, color, pattern, season, occasion, image_url)
+│    └─── Foreign Key: user_id → users.id (One-to-Many)
+│
+├─── password_reset_tokens (id, email, token, expiry_date, used, created_at)
+│    └─── Foreign Key: email → users.email (One-to-Many)
+│
+occasions (id, occasion_name, formality_level, dress_codes, description)
+└─── Referenced by: wardrobe.occasion, color_psychology.occasions
+
+fashion_trends (id, trend_name, description, popularity, season, created_at)
+└─── Used for: Outfit recommendations, trend analysis
+
+skin_tone_rules (id, tone_type, recommended_colors, avoid_colors, description)
+└─── Used for: Personalized color recommendations
+
+color_psychology (id, color, psychology, cultural_significance, mood, occasions)
+└─── Used for: Color matching algorithm, style tips generation
+    </div>
+</div>
+
+<h2 class="section-break">TECHNICAL ARCHITECTURE SUMMARY</h2>
+
+<h3>Technology Stack</h3>
+
+<table>
+    <tr>
+        <th style="width: 25%;">Component</th>
+        <th style="width: 35%;">Technology</th>
+        <th style="width: 40%;">Purpose</th>
+    </tr>
+    <tr>
+        <td><strong>Frontend Framework</strong></td>
+        <td>React 19 + TypeScript 5.8</td>
+        <td>Component-based UI with type safety</td>
+    </tr>
+    <tr>
+        <td><strong>Styling</strong></td>
+        <td>Tailwind CSS 3.x</td>
+        <td>Utility-first responsive design</td>
+    </tr>
+    <tr>
+        <td><strong>Animations</strong></td>
+        <td>Framer Motion 11.x</td>
+        <td>Smooth transitions and progress bars</td>
+    </tr>
+    <tr>
+        <td><strong>Icons</strong></td>
+        <td>Lucide React</td>
+        <td>Modern icon library (Sparkles, TrendingUp)</td>
+    </tr>
+    <tr>
+        <td><strong>Build Tool</strong></td>
+        <td>Vite 6.x</td>
+        <td>Fast development server and builds</td>
+    </tr>
+    <tr>
+        <td><strong>Backend Framework</strong></td>
+        <td>Spring Boot 3.2.3</td>
+        <td>REST API, dependency injection</td>
+    </tr>
+    <tr>
+        <td><strong>Language</strong></td>
+        <td>Java 17</td>
+        <td>LTS version with modern features</td>
+    </tr>
+    <tr>
+        <td><strong>ORM</strong></td>
+        <td>Spring Data JPA + Hibernate</td>
+        <td>Database abstraction and queries</td>
+    </tr>
+    <tr>
+        <td><strong>Security</strong></td>
+        <td>Spring Security + BCrypt</td>
+        <td>Authentication, password hashing</td>
+    </tr>
+    <tr>
+        <td><strong>Email</strong></td>
+        <td>JavaMailSender + Gmail SMTP</td>
+        <td>Password reset emails</td>
+    </tr>
+    <tr>
+        <td><strong>Database</strong></td>
+        <td>MySQL 8.0</td>
+        <td>Relational data storage</td>
+    </tr>
+    <tr>
+        <td><strong>Build Tool</strong></td>
+        <td>Maven 3.x</td>
+        <td>Dependency management, builds</td>
+    </tr>
+</table>
+
+<h3>System Capabilities</h3>
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0;">
+    <div style="background: #ECFDF5; padding: 15px; border-left: 4px solid #10B981;">
+        <strong>✅ Email-Based Authentication</strong><br/>
+        Forgot password with 6-digit codes, 15-minute expiry
+    </div>
+    <div style="background: #ECFDF5; padding: 15px; border-left: 4px solid #10B981;">
+        <strong>✅ Smart Outfit Recommendations</strong><br/>
+        Color theory, pattern matching, 20+ clothing types
+    </div>
+    <div style="background: #ECFDF5; padding: 15px; border-left: 4px solid #10B981;">
+        <strong>✅ Match Scoring Algorithm</strong><br/>
+        0-100 points across 4 categories (color, type, pattern, season)
+    </div>
+    <div style="background: #ECFDF5; padding: 15px; border-left: 4px solid #10B981;">
+        <strong>✅ Three-Tab Wardrobe Interface</strong><br/>
+        My Wardrobe | Complete Outfits | Suggestions
+    </div>
+    <div style="background: #ECFDF5; padding: 15px; border-left: 4px solid #10B981;">
+        <strong>✅ Visual Outfit Previews</strong><br/>
+        Animated progress bars, color-matched cards
+    </div>
+    <div style="background: #ECFDF5; padding: 15px; border-left: 4px solid #10B981;">
+        <strong>✅ Style Tips Generation</strong><br/>
+        AI-powered fashion advice based on analysis
+    </div>
+    <div style="background: #ECFDF5; padding: 15px; border-left: 4px solid #10B981;">
+        <strong>✅ Occasion & Season Filtering</strong><br/>
+        Smart outfit discovery (casual, formal, summer, winter)
+    </div>
+    <div style="background: #ECFDF5; padding: 15px; border-left: 4px solid #10B981;">
+        <strong>✅ Color-Coded Compatibility</strong><br/>
+        Excellent (80-100), Good (65-79), Decent (50-64)
+    </div>
+    <div style="background: #ECFDF5; padding: 15px; border-left: 4px solid #10B981;">
+        <strong>✅ Personalization Features</strong><br/>
+        Skin tone analysis, color psychology, trends
+    </div>
+    <div style="background: #ECFDF5; padding: 15px; border-left: 4px solid #10B981;">
+        <strong>✅ Responsive Design</strong><br/>
+        Mobile-first approach, works on all devices
+    </div>
+</div>
+
+<h3>Match Score Calculation Algorithm</h3>
+
+<div class="code-block">
+<strong>Total Score (0-100 points) = Color Match + Type Compatibility + Pattern Harmony + Season Match</strong>
+
+<strong>1. Color Match (40 points max)</strong>
+   • 16 colors supported: White, Black, Blue, Navy, Red, Maroon, Green, Pink, Yellow, etc.
+   • Complementary color rules: White + {Blue, Black, Navy, Maroon} = 40 points
+   • Example: White Shirt + Blue Jeans = 40/40 ✓
+   • Example: Red Kurta + Blue Jeans = 0/40 ✗ (not complementary)
+
+<strong>2. Clothing Type Compatibility (30 points max)</strong>
+   • Top types: Shirt, T-Shirt, Kurta, Blouse, Blazer, Jacket
+   • Bottom types: Jeans, Trousers, Palazzo, Churidar, Leggings, Shorts
+   • Type pairing rules: Shirt → {Jeans, Trousers, Chinos} = 30 points
+   • Example: Shirt + Jeans = 30/30 ✓
+   • Example: Shirt + Shorts = 0/30 ✗ (not in pairing rules)
+
+<strong>3. Pattern Harmony (20 points max)</strong>
+   • Pattern types: Solid, Striped, Checked, Floral, Printed
+   • Harmony rules: Solid works with everything
+   • Pattern + Pattern = 0 points (avoid clashing)
+   • Example: Solid Shirt + Solid Jeans = 20/20 ✓
+   • Example: Striped Shirt + Checked Pants = 0/20 ✗ (both patterned)
+
+<strong>4. Season Compatibility (10 points max)</strong>
+   • Seasons: Summer, Winter, Monsoon, All Season
+   • All Season items get 10 points always
+   • Same season: Summer + Summer = 10/10 ✓
+   • Example: Summer Shirt + Summer Shorts = 10/10 ✓
+   • Example: Summer Shirt + Winter Jacket = 0/10 ✗
+
+<strong>Rating Categories:</strong>
+• <span class="badge" style="background:#10B981;">Excellent Match (80-100 points)</span> → Green badge
+• <span class="badge" style="background:#3B82F6;">Good Match (65-79 points)</span> → Blue badge
+• <span class="badge" style="background:#F59E0B;">Decent Match (50-64 points)</span> → Amber badge
+• <span class="badge" style="background:#EF4444;">Poor Match (&lt;50 points)</span> → Not shown to user
+
+<strong>Example Calculation: White Shirt + Blue Jeans</strong>
+Color Match:    40/40 (White + Blue are complementary)
+Type Match:     30/30 (Shirt + Jeans perfect pairing)
+Pattern Match:  20/20 (Solid + Solid harmonious)
+Season Match:   10/10 (All Season + All Season)
+<strong>TOTAL SCORE:     100/100 - EXCELLENT MATCH ✓</strong>
+</div>
+
+<h3>Key Features Explained</h3>
+
+<h4>1. Intelligent Outfit Matching</h4>
+<ul class="feature-list">
+    <li><strong>16 Color Combinations:</strong> White, Black, Blue, Navy, Red, Maroon, Green, Pink, Yellow, Purple, Brown, Beige, Grey, Orange, Cream, Gold</li>
+    <li><strong>20+ Clothing Types:</strong> Shirt, T-Shirt, Jeans, Trousers, Kurta, Churidar, Palazzo, Saree, Lehenga, Sherwani, etc.</li>
+    <li><strong>5 Pattern Types:</strong> Solid, Striped, Checked, Floral, Printed</li>
+    <li><strong>4 Seasons:</strong> Summer, Winter, Monsoon, All Season</li>
+    <li><strong>10+ Occasions:</strong> Casual, Formal, Traditional, Office, Gym, Party, Wedding, Festival, etc.</li>
+</ul>
+
+<h4>2. Style Tips Examples</h4>
+<div class="code-block">
+• "White pairs well with almost any color - a versatile wardrobe staple"
+• "Tuck in your shirt for a formal look, or leave it untucked for casual occasions"
+• "Blue jeans are perfect for casual outings, weekend brunches, and relaxed gatherings"
+• "Black creates a slimming effect and exudes sophistication"
+• "Red is bold and energetic - perfect for festive occasions and celebrations"
+• "Navy blue is professional and timeless - ideal for office and business settings"
+</div>
+
+<h4>3. User Experience Flow</h4>
+<ol class="feature-list">
+    <li>User signs up with email and password</li>
+    <li>User adds wardrobe items (White Shirt, Blue Jeans, Black Formal Pants)</li>
+    <li>System analyzes items and generates 11 outfit combinations</li>
+    <li>User clicks "Find Matching Items" on White Shirt</li>
+    <li>System returns 5 suggestions with 100/100 match scores</li>
+    <li>User views suggestions tab with match scores, reasons, style tips</li>
+    <li>User clicks "Complete Outfits" tab</li>
+    <li>System displays visual cards with top+bottom previews</li>
+    <li>Each outfit shows animated match score bar, occasion tags</li>
+    <li>User gets fashion advice: "White pairs well with almost any color"</li>
+</ol>
+
+<h2 class="section-break">CONCLUSION</h2>
+
+<p>
+The <strong>Outfit Style Sense - Smart Indian Dress Stylist</strong> system successfully combines traditional wardrobe management with modern AI-powered fashion recommendations. The Use Case Diagram demonstrates 20 distinct functional requirements organized into 4 logical modules, while the Data Flow Diagrams (Level 0 and Level 1) illustrate the seamless flow of data from user interactions through frontend components, backend services, and database storage.
+</p>
+
+<p>
+The system's core innovation lies in its <strong>Outfit Combination Service (P7)</strong>, which uses sophisticated algorithms incorporating color theory, pattern harmony, clothing type compatibility, and seasonal awareness to generate match scores ranging from 0-100. This data-driven approach provides users with intelligent, personalized outfit recommendations specifically tailored for Indian dress styles and occasions.
+</p>
+
+<p>
+Key architectural strengths include:
+</p>
+<ul class="feature-list">
+    <li><strong>Clear Separation of Concerns:</strong> Frontend (React), Backend (Spring Boot), and Database (MySQL) layers are well-defined</li>
+    <li><strong>Secure Authentication:</strong> Email-based login with 6-digit password reset codes, 15-minute expiry, and BCrypt hashing</li>
+    <li><strong>Intelligent Recommendations:</strong> Color matching (40 points), type pairing (30 points), pattern harmony (20 points), season compatibility (10 points)</li>
+    <li><strong>User-Centric Design:</strong> Three-tab interface, animated progress bars, color-coded badges, visual outfit previews</li>
+    <li><strong>Scalable Architecture:</strong> RESTful APIs, JPA repositories, modular service layer</li>
+    <li><strong>Rich Data Model:</strong> 7 database tables supporting users, wardrobe, occasions, trends, psychology, and rules</li>
+</ul>
+
+<p>
+The diagrams presented in this document provide comprehensive visual representations suitable for academic project reports, technical documentation, and stakeholder presentations. They effectively communicate the system's functionality, data flows, and technical architecture while maintaining professional standards for software engineering documentation.
+</p>
+
+<div style="margin-top: 30px; text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 10px;">
+    <h3 style="margin: 0; color: white;">Project Successfully Documented</h3>
+    <p style="margin: 10px 0 0 0; font-size: 11pt;">Prepared for Academic Project Report Documentation</p>
+</div>
+
+<hr style="border: 2px solid #4F46E5; margin: 30px 0;">
+
+<div style="text-align: center; color: #666; font-size: 10pt; margin-top: 40px;">
+    <p><strong>Outfit Style Sense - Smart Indian Dress Stylist</strong></p>
+    <p>Technology Stack: React 19 • Spring Boot 3.2.3 • MySQL 8.0 • Java 17 • TypeScript 5.8</p>
+    <p>Developed with: Tailwind CSS • Framer Motion • Spring Data JPA • JavaMailSender</p>
+    <p>Generated: April 2026</p>
+</div>
+
+</body>
+</html>

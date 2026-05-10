@@ -1,0 +1,6 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#F5F5F4"/>
+  <path d="M400 250L300 400H500L400 250Z" fill="#D6D3D1"/>
+  <circle cx="450" cy="300" r="30" fill="#D6D3D1"/>
+  <text x="400" y="450" font-family="serif" font-size="24" fill="#A8A29E" text-anchor="middle">Indian Styling Asset</text>
+</svg>

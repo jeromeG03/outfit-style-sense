@@ -1,0 +1,5 @@
+<svg width="800" height="800" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="800" fill="#ECFDF5"/>
+  <circle cx="400" cy="400" r="300" fill="#D1FAE5"/>
+  <text x="400" y="420" font-family="serif" font-size="48" fill="#059669" text-anchor="middle">Digital Closet</text>
+</svg>
