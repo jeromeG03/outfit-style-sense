@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { API_ENDPOINTS } from '../../config/api';
 
 interface SkinToneRule {
   ruleId: number;
@@ -16,7 +17,7 @@ const SkinTonePage: React.FC = () => {
 
   useEffect(() => {
     // Fetch skin tone rules from Spring Boot backend
-    fetch('http://localhost:8080/api/skintone')
+    fetch(API_ENDPOINTS.SKIN_TONE.ALL)
       .then(res => {
         if (!res.ok) {
           throw new Error('Failed to fetch skin tone rules');

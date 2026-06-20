@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { API_ENDPOINTS } from '../../config/api';
 
 interface CategoryTrend {
   name: string;
@@ -57,11 +58,11 @@ const TrendsPage: React.FC = () => {
       console.log('🔄 Fetching trends data...', new Date().toLocaleTimeString());
       
       const [currentRes, itemsRes, regionsRes, historicalRes, colorsRes] = await Promise.all([
-        fetch('http://localhost:8080/api/trends/current'),
-        fetch('http://localhost:8080/api/trends/categories'),
-        fetch('http://localhost:8080/api/trends/regions'),
-        fetch('http://localhost:8080/api/trends/historical?days=7'),
-        fetch('http://localhost:8080/api/trends/colors')
+        fetch(API_ENDPOINTS.TRENDS.CURRENT),
+        fetch(API_ENDPOINTS.TRENDS.CATEGORIES),
+        fetch(API_ENDPOINTS.TRENDS.REGIONS),
+        fetch(API_ENDPOINTS.TRENDS.HISTORICAL(7)),
+        fetch(API_ENDPOINTS.TRENDS.COLORS)
       ]);
 
       if (!currentRes.ok || !itemsRes.ok || !regionsRes.ok) {

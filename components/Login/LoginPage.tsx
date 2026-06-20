@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
+import { API_ENDPOINTS } from '../../config/api';
 import { X, Mail, Lock, KeyRound } from 'lucide-react';
 
 const LoginPage: React.FC = () => {
@@ -30,7 +31,7 @@ const LoginPage: React.FC = () => {
     
     try {
       // Call Spring Boot backend API
-      const response = await fetch('http://localhost:8080/api/users/login', {
+      const response = await fetch(API_ENDPOINTS.USERS.LOGIN, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -66,7 +67,7 @@ const LoginPage: React.FC = () => {
     try {
       if (resetStep === 'email') {
         // Request reset code
-        const response = await fetch('http://localhost:8080/api/users/forgot-password', {
+        const response = await fetch(API_ENDPOINTS.USERS.FORGOT_PASSWORD, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: forgotEmail }),
@@ -83,7 +84,7 @@ const LoginPage: React.FC = () => {
         setResetStep('code');
       } else if (resetStep === 'code') {
         // Verify reset code
-        const response = await fetch('http://localhost:8080/api/users/verify-reset-code', {
+        const response = await fetch(API_ENDPOINTS.USERS.VERIFY_RESET_CODE, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: forgotEmail, code: resetCode }),
@@ -98,7 +99,7 @@ const LoginPage: React.FC = () => {
         setResetStep('password');
       } else if (resetStep === 'password') {
         // Reset password
-        const response = await fetch('http://localhost:8080/api/users/reset-password', {
+        const response = await fetch(API_ENDPOINTS.USERS.RESET_PASSWORD, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: forgotEmail, code: resetCode, newPassword }),

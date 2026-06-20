@@ -8,6 +8,9 @@ export const API_ENDPOINTS = {
   USERS: {
     LOGIN: `${API_BASE_URL}/api/users/login`,
     REGISTER: `${API_BASE_URL}/api/users/register`,
+    FORGOT_PASSWORD: `${API_BASE_URL}/api/users/forgot-password`,
+    VERIFY_RESET_CODE: `${API_BASE_URL}/api/users/verify-reset-code`,
+    RESET_PASSWORD: `${API_BASE_URL}/api/users/reset-password`,
     UPDATE: (id: number) => `${API_BASE_URL}/api/users/${id}`,
     GET: (id: number) => `${API_BASE_URL}/api/users/${id}`,
   },
@@ -17,11 +20,12 @@ export const API_ENDPOINTS = {
     BASE: `${API_BASE_URL}/api/wardrobe`,
     BY_USER: (userId: number) => `${API_BASE_URL}/api/wardrobe/user/${userId}`,
     BY_USER_AND_GENDER: (userId: number, gender: string) => 
-      `${API_BASE_URL}/api/wardrobe/user/${userId}?gender=${gender}`,
+      `${API_BASE_URL}/api/wardrobe/user/${userId}/gender/${gender}`,
     SUGGESTIONS: (itemId: number, userId: number) => 
       `${API_BASE_URL}/api/wardrobe/suggestions/${itemId}/user/${userId}`,
     OUTFITS: (userId: number) => `${API_BASE_URL}/api/wardrobe/outfits/user/${userId}`,
     DELETE: (id: number) => `${API_BASE_URL}/api/wardrobe/${id}`,
+    UPDATE: (id: number) => `${API_BASE_URL}/api/wardrobe/${id}`,
   },
   
   // Trends endpoints

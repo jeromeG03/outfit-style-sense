@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Upload, Trash2, Download, RefreshCw, Palette, User, Shirt, ShoppingBag, Sparkles, Settings } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { API_ENDPOINTS } from '../../config/api';
 
 interface Garment {
   id: string;
@@ -35,7 +36,7 @@ const VirtualTrialRoomPage: React.FC = () => {
 
   const checkVitonBackend = async () => {
     try {
-      const response = await fetch('http://localhost:8080/api/virtual-tryon/health');
+      const response = await fetch(API_ENDPOINTS.VIRTUAL_TRYON.HEALTH);
       if (response.ok) {
         setVitonBackendStatus('online');
       } else {
@@ -139,7 +140,7 @@ const VirtualTrialRoomPage: React.FC = () => {
 
       let response;
       try {
-        response = await fetch('http://localhost:8080/api/virtual-tryon/batch-process', {
+        response = await fetch(API_ENDPOINTS.VIRTUAL_TRYON.BATCH_PROCESS, {
           method: 'POST',
           body: formData
         });

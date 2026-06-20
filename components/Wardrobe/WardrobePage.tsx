@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { getLoggedInUser, isLoggedIn } from '../../utils/auth';
 import { useNavigate } from 'react-router-dom';
 import { Sparkles, TrendingUp, Heart, Zap, Star } from 'lucide-react';
+import { API_ENDPOINTS } from '../../config/api';
 
 interface WardrobeItem {
   wardrobeId?: number;
@@ -112,7 +113,7 @@ const WardrobePage: React.FC = () => {
     setLoading(true);
     try {
       console.log(`Fetching items for user ${user.userId} with gender: ${gender}`);
-      const res = await fetch(`http://localhost:8080/api/wardrobe/user/${user.userId}/gender/${gender}`);
+      const res = await fetch(API_ENDPOINTS.WARDROBE.BY_USER_AND_GENDER(user.userId, gender));
       if (!res.ok) {
         throw new Error('Failed to fetch wardrobe items');
       }
@@ -176,8 +177,8 @@ const WardrobePage: React.FC = () => {
   const fetchInsights = async () => {
     try {
       const [psyRes, skinRes] = await Promise.all([
-        fetch('http://localhost:8080/api/psychology'),
-        fetch('http://localhost:8080/api/skintone')
+        fetch(API_ENDPOINTS.COLOR_PSYCHOLOGY.ALL),
+        fetch(API_ENDPOINTS.SKIN_TONE.ALL)
       ]);
       setPsychology(await psyRes.json());
       setSkinRules(await skinRes.json());
@@ -203,8 +204,8 @@ const WardrobePage: React.FC = () => {
     try {
       const method = isEditing ? 'PUT' : 'POST';
       const url = isEditing 
-        ? `http://localhost:8080/api/wardrobe/${isEditing}` 
-        : 'http://localhost:8080/api/wardrobe';
+        ? API_ENDPOINTS.WARDROBE.UPDATE(isEditing)
+        : API_ENDPOINTS.WARDROBE.BASE;
       
       const res = await fetch(url, {
         method,
@@ -230,7 +231,7 @@ const WardrobePage: React.FC = () => {
   const handleDelete = async (id: number) => {
     if (!confirm("Remove this item?")) return;
     try {
-      await fetch(`http://localhost:8080/api/wardrobe/${id}`, { method: 'DELETE' });
+      await fetch(API_ENDPOINTS.WARDROBE.DELETE(id), { method: 'DELETE' });
       fetchItems();
     } catch (err) {
       console.error("Delete failed", err);
@@ -279,7 +280,7 @@ const WardrobePage: React.FC = () => {
     
     try {
       console.log('Fetching suggestions for item:', item.wardrobeId);
-      const res = await fetch(`http://localhost:8080/api/wardrobe/suggestions/${item.wardrobeId}/user/${user.userId}`);
+      const res = await fetch(API_ENDPOINTS.WARDROBE.SUGGESTIONS(item.wardrobeId, user.userId));
       
       if (!res.ok) {
         throw new Error(`HTTP error! status: ${res.status}`);
@@ -312,7 +313,7 @@ const WardrobePage: React.FC = () => {
     
     try {
       console.log('Fetching complete outfits for user:', user.userId);
-      const res = await fetch(`http://localhost:8080/api/wardrobe/outfits/user/${user.userId}`);
+      const res = await fetch(API_ENDPOINTS.WARDROBE.OUTFITS(user.userId));
       
       if (!res.ok) {
         throw new Error(`HTTP error! status: ${res.status}`);

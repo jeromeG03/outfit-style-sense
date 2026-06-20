@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { GoogleGenAI, Type } from "@google/genai";
+import { API_ENDPOINTS } from '../../config/api';
 
 interface ColorPsychology {
   colorId: number;
@@ -19,7 +20,7 @@ const PsychologyPage: React.FC = () => {
   const [selectedColor, setSelectedColor] = useState<ColorPsychology | null>(null);
 
   useEffect(() => {
-    fetch('http://localhost:8080/api/psychology')
+    fetch(API_ENDPOINTS.COLOR_PSYCHOLOGY.ALL)
       .then(res => {
         if (!res.ok) {
           throw new Error('Failed to fetch color psychology data');

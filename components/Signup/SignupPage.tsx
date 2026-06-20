@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { API_ENDPOINTS } from '../../config/api';
 import { User, Lock, UserCircle, Palette, Calendar, ArrowRight, CheckCircle2, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -30,7 +31,7 @@ const SignupPage: React.FC = () => {
 
     try {
       // Call Spring Boot backend API
-      const response = await fetch('http://localhost:8080/api/users/signup', {
+      const response = await fetch(`${API_ENDPOINTS.BASE_URL}/api/users/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

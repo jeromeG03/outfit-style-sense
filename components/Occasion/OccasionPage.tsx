@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { API_ENDPOINTS } from '../../config/api';
 
 interface Occasion {
   occasionId: number;
@@ -25,8 +26,8 @@ const OccasionPage: React.FC = () => {
   useEffect(() => {
     // Fetch occasions for both genders
     Promise.all([
-      fetch('http://localhost:8080/api/occasions/gender/Male').then(res => res.json()),
-      fetch('http://localhost:8080/api/occasions/gender/Female').then(res => res.json())
+      fetch(API_ENDPOINTS.OCCASIONS.BY_GENDER('Male')).then(res => res.json()),
+      fetch(API_ENDPOINTS.OCCASIONS.BY_GENDER('Female')).then(res => res.json())
     ])
       .then(([menData, womenData]) => {
         setMenOccasions(menData);
