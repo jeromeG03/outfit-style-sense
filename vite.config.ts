@@ -8,12 +8,22 @@ export default defineConfig(({ mode }) => {
       server: {
         port: 3000,
         host: '0.0.0.0',
-        allowedHosts: ['all'],
+        allowedHosts: [
+          'outfit-style-sense-production-974e.up.railway.app',
+          '.railway.app',
+          '.up.railway.app',
+          'localhost'
+        ],
       },
       preview: {
         port: 3000,
         host: '0.0.0.0',
-        allowedHosts: ['all'],
+        allowedHosts: [
+          'outfit-style-sense-production-974e.up.railway.app',
+          '.railway.app',
+          '.up.railway.app',
+          'localhost'
+        ],
       },
       plugins: [react()],
       define: {
