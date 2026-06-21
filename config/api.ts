@@ -1,5 +1,16 @@
 // API Configuration - Automatically uses Railway backend URL in production
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+// Check if running on Railway by looking at the hostname
+const isProduction = typeof window !== 'undefined' && window.location.hostname.includes('railway.app');
+const API_BASE_URL = isProduction 
+  ? 'https://outfit-style-sense-production.up.railway.app'
+  : (import.meta.env.VITE_API_URL || 'http://localhost:8080');
+
+// Debug log to verify correct API URL is being used
+if (typeof window !== 'undefined') {
+  console.log('🔗 API Base URL:', API_BASE_URL);
+  console.log('🌍 Environment:', isProduction ? 'Production (Railway)' : 'Development');
+  console.log('📍 Frontend URL:', window.location.hostname);
+}
 
 export const API_ENDPOINTS = {
   BASE_URL: API_BASE_URL,
