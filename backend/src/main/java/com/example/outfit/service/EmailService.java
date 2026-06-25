@@ -12,7 +12,7 @@ public class EmailService {
     @Autowired(required = false)
     private JavaMailSender mailSender;
 
-    @Value("${spring.mail.username:noreply@outfitstyle.com}")
+    @Value("${spring.mail.from:jerome322001@gmail.com}")
     private String fromEmail;
 
     public void sendPasswordResetEmail(String toEmail, String resetCode) {
