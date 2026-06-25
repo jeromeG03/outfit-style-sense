@@ -9,8 +9,8 @@ export function fixEncodingIssues(text: string): string {
     'ΓÇö': '—',  // Em dash
     'ΓÇÿ': '"',  // Left double quote
     'ΓÇ¥': '"',  // Right double quote
-    'ΓÇÖ': ''',  // Left single quote
-    'ΓÇÖ': ''',  // Right single quote
+    'ΓÇÖ': '\u2018',  // Left single quote
+    'ΓÇÖ': '\u2019',  // Right single quote
     'Γåæ': '…',  // Ellipsis
     'Γåî': '™',  // Trademark
     'Γåô': '®',  // Registered trademark
