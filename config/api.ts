@@ -56,13 +56,13 @@ export const API_ENDPOINTS = {
   
   // Skin Tone endpoints
   SKIN_TONE: {
-    ALL: `${API_BASE_URL}/api/skintone/rules`,
-    RECOMMENDATIONS: (skinTone: string) => `${API_BASE_URL}/api/skintone/recommendations/${skinTone}`,
+    ALL: `${API_BASE_URL}/api/skintone`,
+    RECOMMENDATIONS: (skinTone: string) => `${API_BASE_URL}/api/skintone/tone/${skinTone}`,
   },
   
   // Color Psychology endpoints
   COLOR_PSYCHOLOGY: {
-    ALL: `${API_BASE_URL}/api/psychology/colors`,
+    ALL: `${API_BASE_URL}/api/psychology`,
     BY_COLOR: (color: string) => `${API_BASE_URL}/api/psychology/color/${color}`,
   },
   
