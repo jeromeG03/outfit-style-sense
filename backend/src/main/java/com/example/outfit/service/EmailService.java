@@ -16,11 +16,20 @@ public class EmailService {
     private String fromEmail;
 
     public void sendPasswordResetEmail(String toEmail, String resetCode) {
+        System.out.println("=== EMAIL SERVICE DEBUG ===");
+        System.out.println("MailSender null? " + (mailSender == null));
+        System.out.println("From email: " + fromEmail);
+        System.out.println("To email: " + toEmail);
+        
         if (mailSender == null) {
-            String errorMsg = "Email service is not configured. Missing spring.mail.* properties.";
-            System.err.println("❌ CRITICAL: " + errorMsg);
-            System.err.println("Configure SPRING_MAIL_* environment variables in Railway.");
-            throw new RuntimeException(errorMsg);
+            String errorMsg = "Email service is not configured. JavaMailSender bean is NULL.\n" +
+                            "Please set SPRING_MAIL_* environment variables in Railway:\n" +
+                            "- SPRING_MAIL_HOST=smtp.gmail.com\n" +
+                            "- SPRING_MAIL_PORT=587\n" +
+                            "- SPRING_MAIL_USERNAME=your-email@gmail.com\n" +
+                            "- SPRING_MAIL_PASSWORD=your-app-password";
+            System.err.println("❌ " + errorMsg);
+            throw new RuntimeException("Email service not configured");
         }
 
         try {
@@ -30,24 +39,32 @@ public class EmailService {
             message.setSubject("Outfit Style Sense - Password Reset Code");
             message.setText(buildEmailBody(resetCode));
             
-            System.out.println("Attempting to send email to: " + toEmail + " from: " + fromEmail);
+            System.out.println("Attempting to send email via SMTP...");
             mailSender.send(message);
             System.out.println("✅ Password reset email sent successfully to: " + toEmail);
         } catch (org.springframework.mail.MailAuthenticationException e) {
-            String errorMsg = "Email authentication failed. Check Gmail App Password: " + e.getMessage();
+            String errorMsg = "Gmail authentication failed. This usually means:\n" +
+                            "1. App Password is incorrect\n" +
+                            "2. App Password has expired\n" +
+                            "3. 2-Step Verification is not enabled on Gmail\n" +
+                            "Original error: " + e.getMessage();
             System.err.println("❌ " + errorMsg);
             e.printStackTrace();
-            throw new RuntimeException("Email authentication failed. Please contact support with error code: AUTH_FAIL");
+            throw new RuntimeException("Email authentication failed - check Gmail App Password");
         } catch (org.springframework.mail.MailSendException e) {
-            String errorMsg = "Failed to send email (network/SMTP issue): " + e.getMessage();
+            String errorMsg = "Failed to send email. This usually means:\n" +
+                            "1. Gmail is blocking Railway's IP address\n" +
+                            "2. Network/firewall issue\n" +
+                            "3. SMTP server unreachable\n" +
+                            "Original error: " + e.getMessage();
             System.err.println("❌ " + errorMsg);
             e.printStackTrace();
-            throw new RuntimeException("Failed to send email. Please check your network connection or try again later.");
+            throw new RuntimeException("Email delivery failed - Gmail may be blocking Railway IPs");
         } catch (Exception e) {
-            String errorMsg = "Unexpected error sending email: " + e.getClass().getName() + " - " + e.getMessage();
+            String errorMsg = "Unexpected error: " + e.getClass().getName() + " - " + e.getMessage();
             System.err.println("❌ " + errorMsg);
             e.printStackTrace();
-            throw new RuntimeException("Failed to send email. Please try again later or contact support.");
+            throw new RuntimeException("Email service error: " + e.getMessage());
         }
     }
     

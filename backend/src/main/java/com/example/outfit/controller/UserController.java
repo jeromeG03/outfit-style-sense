@@ -60,6 +60,8 @@ public class UserController {
     public ResponseEntity<?> forgotPassword(@RequestBody Map<String, String> request) {
         try {
             String email = request.get("email");
+            System.out.println("Password reset requested for email: " + email);
+            
             userService.initiatePasswordReset(email);
             
             Map<String, String> response = new HashMap<>();
@@ -67,9 +69,21 @@ public class UserController {
             
             return ResponseEntity.ok(response);
         } catch (RuntimeException e) {
+            System.err.println("Password reset error: " + e.getMessage());
+            e.printStackTrace();
+            
             Map<String, String> error = new HashMap<>();
-            error.put("error", e.getMessage());
-            return ResponseEntity.badRequest().body(error);
+            error.put("error", "Unable to send reset email. " + e.getMessage());
+            
+            return ResponseEntity.status(500).body(error);
+        } catch (Exception e) {
+            System.err.println("Unexpected error in password reset: " + e.getMessage());
+            e.printStackTrace();
+            
+            Map<String, String> error = new HashMap<>();
+            error.put("error", "An unexpected error occurred. Please try again later.");
+            
+            return ResponseEntity.status(500).body(error);
         }
     }
 

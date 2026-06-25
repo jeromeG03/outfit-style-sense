@@ -73,26 +73,42 @@ public class UserService {
 
     @Transactional
     public void initiatePasswordReset(String email) {
+        System.out.println("Initiating password reset for: " + email);
+        
         Optional<User> userOpt = userRepository.findByEmail(email);
         if (userOpt.isEmpty()) {
             // Don't reveal if email exists or not (security best practice)
+            System.out.println("No user found with email: " + email + ", but returning success for security");
             return;
         }
 
+        System.out.println("User found, generating reset code...");
+        
         // Delete any existing unused tokens for this email
         resetTokenRepository.deleteByEmail(email);
 
         // Generate 6-digit reset code
         String resetCode = String.format("%06d", random.nextInt(1000000));
+        System.out.println("Reset code generated: " + resetCode);
 
         // Save reset token
         PasswordResetToken token = new PasswordResetToken();
         token.setEmail(email);
         token.setToken(resetCode);
         resetTokenRepository.save(token);
+        System.out.println("Reset token saved to database");
 
         // Send email - this will throw exception if email fails
-        emailService.sendPasswordResetEmail(email, resetCode);
+        try {
+            System.out.println("Attempting to send email...");
+            emailService.sendPasswordResetEmail(email, resetCode);
+            System.out.println("Email sent successfully");
+        } catch (Exception e) {
+            System.err.println("Failed to send email, but token was saved: " + e.getMessage());
+            // Log the code for debugging
+            System.err.println("RESET CODE FOR DEBUGGING (Remove in production): " + resetCode);
+            throw new RuntimeException("Email service is currently unavailable. Please contact support or try again later.");
+        }
     }
 
     @Transactional
