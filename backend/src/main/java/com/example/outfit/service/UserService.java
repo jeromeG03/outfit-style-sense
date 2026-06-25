@@ -98,28 +98,10 @@ public class UserService {
         resetTokenRepository.save(token);
         System.out.println("Reset token saved to database");
 
-        // Send email - this will throw exception if email fails
-        try {
-            System.out.println("Attempting to send email...");
-            emailService.sendPasswordResetEmail(email, resetCode);
-            System.out.println("Email sent successfully");
-        } catch (Exception e) {
-            System.err.println("Failed to send email, but token was saved: " + e.getMessage());
-            // TEMPORARY: Log the code for debugging
-            System.err.println("======================================");
-            System.err.println("EMAIL DELIVERY FAILED - TEMPORARY DEBUG MODE");
-            System.err.println("Reset code for " + email + ": " + resetCode);
-            System.err.println("This code has been saved and will work for 15 minutes");
-            System.err.println("Configure SendGrid in Railway to enable email delivery");
-            System.err.println("======================================");
-            
-            // In production, we'd throw exception here
-            // For now, allow password reset to continue without email
-            // throw new RuntimeException("Email service is currently unavailable. Please contact support or try again later.");
-            
-            // TEMPORARY: Return success so user can test with the code from logs
-            System.out.println("Password reset proceeding without email (debug mode)");
-        }
+        // Send email via SendGrid HTTP API
+        System.out.println("Attempting to send email via SendGrid...");
+        emailService.sendPasswordResetEmail(email, resetCode);
+        System.out.println("Email sent successfully");
     }
 
     @Transactional

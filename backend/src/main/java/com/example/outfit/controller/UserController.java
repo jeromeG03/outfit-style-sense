@@ -65,8 +65,7 @@ public class UserController {
             userService.initiatePasswordReset(email);
             
             Map<String, String> response = new HashMap<>();
-            response.put("message", "Reset code has been generated. Check your email or contact support for the code.");
-            response.put("note", "If email service is not configured, check Railway backend logs for the reset code.");
+            response.put("message", "If an account exists with this email, a reset code has been sent.");
             
             return ResponseEntity.ok(response);
         } catch (RuntimeException e) {
@@ -74,7 +73,7 @@ public class UserController {
             e.printStackTrace();
             
             Map<String, String> error = new HashMap<>();
-            error.put("error", e.getMessage());
+            error.put("error", "Unable to send reset email. Please try again or contact support.");
             
             return ResponseEntity.status(500).body(error);
         } catch (Exception e) {

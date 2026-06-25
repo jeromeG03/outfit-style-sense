@@ -72,6 +72,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
+        
+        <!-- SendGrid Java SDK for HTTP API (works on Railway) -->
+        <dependency>
+            <groupId>com.sendgrid</groupId>
+            <artifactId>sendgrid-java</artifactId>
+            <version>4.10.2</version>
+        </dependency>
 		
 		<!-- Image Processing Dependencies -->
 		<dependency>
