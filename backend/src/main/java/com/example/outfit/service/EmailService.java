@@ -20,9 +20,11 @@ public class EmailService {
             if (mailSender == null) {
                 // For development/demo: just log the code
                 System.out.println("=================================================");
+                System.out.println("⚠️  EMAIL SERVICE NOT CONFIGURED");
                 System.out.println("PASSWORD RESET CODE FOR: " + toEmail);
                 System.out.println("RESET CODE: " + resetCode);
                 System.out.println("This code is valid for 15 minutes");
+                System.out.println("Note: Configure email in Railway variables to send actual emails");
                 System.out.println("=================================================");
                 return;
             }
@@ -34,13 +36,16 @@ public class EmailService {
             message.setText(buildEmailBody(resetCode));
             
             mailSender.send(message);
-            System.out.println("Password reset email sent to: " + toEmail);
+            System.out.println("✅ Password reset email sent successfully to: " + toEmail);
         } catch (Exception e) {
-            System.err.println("Failed to send email to " + toEmail + ": " + e.getMessage());
+            System.err.println("❌ Failed to send email to " + toEmail + ": " + e.getMessage());
+            e.printStackTrace();
             // Fallback: print to console for development
             System.out.println("=================================================");
+            System.out.println("⚠️  EMAIL DELIVERY FAILED - SHOWING CODE");
             System.out.println("PASSWORD RESET CODE FOR: " + toEmail);
             System.out.println("RESET CODE: " + resetCode);
+            System.out.println("Error: " + e.getMessage());
             System.out.println("=================================================");
         }
     }

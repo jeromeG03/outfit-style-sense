@@ -20,6 +20,7 @@ const LoginPage: React.FC = () => {
   const [resetLoading, setResetLoading] = useState(false);
   const [resetError, setResetError] = useState('');
   const [resetSuccess, setResetSuccess] = useState('');
+  const [displayResetCode, setDisplayResetCode] = useState<string>('');
   
   const navigate = useNavigate();
   const { login } = useAuth();
@@ -79,7 +80,10 @@ const LoginPage: React.FC = () => {
         }
 
         const data = await response.json();
-        setResetSuccess('Reset code sent to your email! Check console for development.');
+        setDisplayResetCode(data.resetCode || '');
+        setResetSuccess(data.resetCode 
+          ? 'Reset code generated! If email delivery fails, use the code shown below.' 
+          : 'Reset code sent to your email!');
         console.log('Reset code for testing:', data.resetCode);
         setResetStep('code');
       } else if (resetStep === 'code') {
@@ -131,6 +135,7 @@ const LoginPage: React.FC = () => {
     setResetStep('email');
     setResetError('');
     setResetSuccess('');
+    setDisplayResetCode('');
   };
 
   return (
@@ -268,6 +273,13 @@ const LoginPage: React.FC = () => {
                   <label className="block text-xs font-bold text-stone-400 uppercase tracking-widest mb-2">
                     Reset Code
                   </label>
+                  {displayResetCode && (
+                    <div className="mb-3 p-4 bg-amber-50 border-2 border-amber-200 rounded-xl">
+                      <p className="text-xs text-amber-800 font-semibold mb-1">Your Reset Code:</p>
+                      <p className="text-3xl font-bold text-amber-900 text-center tracking-widest">{displayResetCode}</p>
+                      <p className="text-xs text-amber-700 mt-1 text-center">Copy this code and enter below</p>
+                    </div>
+                  )}
                   <input
                     type="text"
                     required
