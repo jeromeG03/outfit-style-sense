@@ -17,9 +17,10 @@ public class EmailService {
 
     public void sendPasswordResetEmail(String toEmail, String resetCode) {
         if (mailSender == null) {
-            System.err.println("❌ CRITICAL: Email service is not configured!");
-            System.err.println("Please configure email settings in Railway environment variables.");
-            throw new RuntimeException("Email service is not available. Please contact support.");
+            String errorMsg = "Email service is not configured. Missing spring.mail.* properties.";
+            System.err.println("❌ CRITICAL: " + errorMsg);
+            System.err.println("Configure SPRING_MAIL_* environment variables in Railway.");
+            throw new RuntimeException(errorMsg);
         }
 
         try {
@@ -29,13 +30,41 @@ public class EmailService {
             message.setSubject("Outfit Style Sense - Password Reset Code");
             message.setText(buildEmailBody(resetCode));
             
+            System.out.println("Attempting to send email to: " + toEmail + " from: " + fromEmail);
             mailSender.send(message);
             System.out.println("✅ Password reset email sent successfully to: " + toEmail);
-        } catch (Exception e) {
-            System.err.println("❌ Failed to send email to " + toEmail);
-            System.err.println("Error: " + e.getMessage());
+        } catch (org.springframework.mail.MailAuthenticationException e) {
+            String errorMsg = "Email authentication failed. Check Gmail App Password: " + e.getMessage();
+            System.err.println("❌ " + errorMsg);
             e.printStackTrace();
-            throw new RuntimeException("Failed to send reset email. Please try again later or contact support.");
+            throw new RuntimeException("Email authentication failed. Please contact support with error code: AUTH_FAIL");
+        } catch (org.springframework.mail.MailSendException e) {
+            String errorMsg = "Failed to send email (network/SMTP issue): " + e.getMessage();
+            System.err.println("❌ " + errorMsg);
+            e.printStackTrace();
+            throw new RuntimeException("Failed to send email. Please check your network connection or try again later.");
+        } catch (Exception e) {
+            String errorMsg = "Unexpected error sending email: " + e.getClass().getName() + " - " + e.getMessage();
+            System.err.println("❌ " + errorMsg);
+            e.printStackTrace();
+            throw new RuntimeException("Failed to send email. Please try again later or contact support.");
+        }
+    }
+    
+    public boolean testEmailConfiguration() {
+        if (mailSender == null) {
+            System.err.println("❌ JavaMailSender is NULL - email not configured");
+            return false;
+        }
+        
+        try {
+            System.out.println("Testing email configuration...");
+            System.out.println("From email: " + fromEmail);
+            System.out.println("Mail sender configured: " + mailSender.getClass().getName());
+            return true;
+        } catch (Exception e) {
+            System.err.println("❌ Error testing email config: " + e.getMessage());
+            return false;
         }
     }
 

@@ -1,5 +1,7 @@
 package com.example.outfit.controller;
 
+import com.example.outfit.service.EmailService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
@@ -7,6 +9,9 @@ import java.util.Map;
 
 @RestController
 public class RootController {
+
+    @Autowired
+    private EmailService emailService;
 
     @GetMapping("/")
     public Map<String, Object> root() {
@@ -30,6 +35,17 @@ public class RootController {
     public Map<String, String> health() {
         Map<String, String> response = new HashMap<>();
         response.put("status", "UP");
+        return response;
+    }
+    
+    @GetMapping("/test-email-config")
+    public Map<String, Object> testEmailConfig() {
+        Map<String, Object> response = new HashMap<>();
+        boolean configured = emailService.testEmailConfiguration();
+        response.put("emailConfigured", configured);
+        response.put("message", configured 
+            ? "Email service is properly configured" 
+            : "Email service is NOT configured - check environment variables");
         return response;
     }
 }
