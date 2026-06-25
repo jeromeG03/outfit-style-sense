@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { API_ENDPOINTS } from '../../config/api';
+import { fixEncodingIssues } from '../../utils/textUtils';
 
 interface Occasion {
   occasionId: number;
@@ -139,7 +140,7 @@ const OccasionPage: React.FC = () => {
                   📖 Styling Guide & Description
                 </h3>
                 <p className="text-stone-600 leading-relaxed whitespace-pre-line">
-                  {activeOccasion.description || 'No description available.'}
+                  {fixEncodingIssues(activeOccasion.description || 'No description available.')}
                 </p>
               </div>
 
@@ -150,7 +151,7 @@ const OccasionPage: React.FC = () => {
                     👔 Outfit Suggestions
                   </h3>
                   <p className="text-stone-700 leading-relaxed whitespace-pre-line">
-                    {activeOccasion.outfitSuggestions}
+                    {fixEncodingIssues(activeOccasion.outfitSuggestions)}
                   </p>
                 </div>
               )}
@@ -162,7 +163,7 @@ const OccasionPage: React.FC = () => {
                     🎨 Color Palette
                   </h3>
                   <p className="text-stone-700 leading-relaxed whitespace-pre-line">
-                    {activeOccasion.colorPalette}
+                    {fixEncodingIssues(activeOccasion.colorPalette)}
                   </p>
                 </div>
               )}
@@ -174,7 +175,7 @@ const OccasionPage: React.FC = () => {
                     💎 Accessories & Finishing Touches
                   </h3>
                   <p className="text-stone-700 leading-relaxed whitespace-pre-line">
-                    {activeOccasion.accessories}
+                    {fixEncodingIssues(activeOccasion.accessories)}
                   </p>
                 </div>
               )}
@@ -186,7 +187,7 @@ const OccasionPage: React.FC = () => {
                     ✅ Dos & ❌ Don'ts
                   </h3>
                   <p className="text-stone-700 leading-relaxed whitespace-pre-line">
-                    {activeOccasion.dosAndDonts}
+                    {fixEncodingIssues(activeOccasion.dosAndDonts)}
                   </p>
                 </div>
               )}

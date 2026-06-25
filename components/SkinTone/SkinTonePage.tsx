@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { API_ENDPOINTS } from '../../config/api';
+import { getColorHex, isLightColor } from '../../utils/colorUtils';
 
 interface SkinToneRule {
   ruleId: number;
@@ -121,17 +122,26 @@ const SkinTonePage: React.FC = () => {
                     Recommended Palettes
                   </h3>
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
-                    {activeProfile.suitableColors.split(',').map((color, idx) => (
-                      <div key={idx} className="flex flex-col items-center gap-3 group">
-                        <div 
-                          className="w-full aspect-square rounded-3xl shadow-lg border-4 border-stone-50 transition-transform group-hover:scale-110 flex items-center justify-center text-[10px] font-bold text-stone-400" 
-                          style={{ backgroundColor: color.trim().toLowerCase() }}
-                        >
-                          {!color.trim().startsWith('#') && color.trim()}
+                    {activeProfile.suitableColors.split(',').map((color, idx) => {
+                      const colorName = color.trim();
+                      const colorHex = getColorHex(colorName);
+                      const isLight = isLightColor(colorHex);
+                      
+                      return (
+                        <div key={idx} className="flex flex-col items-center gap-3 group">
+                          <div 
+                            className="w-full aspect-square rounded-3xl shadow-lg border-4 border-stone-50 transition-transform group-hover:scale-110 flex items-center justify-center text-[10px] font-bold" 
+                            style={{ 
+                              backgroundColor: colorHex,
+                              color: isLight ? '#374151' : '#FFFFFF'
+                            }}
+                          >
+                            {colorName}
+                          </div>
+                          <span className="text-[10px] font-bold text-stone-500 uppercase tracking-tighter text-center">{colorName}</span>
                         </div>
-                        <span className="text-[10px] font-bold text-stone-500 uppercase tracking-tighter text-center">{color.trim()}</span>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </div>
 
@@ -142,17 +152,26 @@ const SkinTonePage: React.FC = () => {
                     Colors to Avoid
                   </h3>
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
-                    {activeProfile.avoidColors.split(',').map((color, idx) => (
-                      <div key={idx} className="flex flex-col items-center gap-3 group">
-                        <div 
-                          className="w-full aspect-square rounded-3xl shadow-sm border-2 border-stone-100 opacity-60 grayscale-[0.2] transition-transform group-hover:scale-110 flex items-center justify-center text-[10px] font-bold text-stone-300" 
-                          style={{ backgroundColor: color.trim().toLowerCase() }}
-                        >
-                          {!color.trim().startsWith('#') && color.trim()}
+                    {activeProfile.avoidColors.split(',').map((color, idx) => {
+                      const colorName = color.trim();
+                      const colorHex = getColorHex(colorName);
+                      const isLight = isLightColor(colorHex);
+                      
+                      return (
+                        <div key={idx} className="flex flex-col items-center gap-3 group">
+                          <div 
+                            className="w-full aspect-square rounded-3xl shadow-sm border-2 border-stone-100 opacity-60 grayscale-[0.2] transition-transform group-hover:scale-110 flex items-center justify-center text-[10px] font-bold" 
+                            style={{ 
+                              backgroundColor: colorHex,
+                              color: isLight ? '#6B7280' : '#D1D5DB'
+                            }}
+                          >
+                            {colorName}
+                          </div>
+                          <span className="text-[10px] font-bold text-stone-400 uppercase tracking-tighter text-center">{colorName}</span>
                         </div>
-                        <span className="text-[10px] font-bold text-stone-400 uppercase tracking-tighter text-center">{color.trim()}</span>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </div>
               </div>
