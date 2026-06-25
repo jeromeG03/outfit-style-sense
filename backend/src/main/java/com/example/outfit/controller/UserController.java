@@ -60,12 +60,10 @@ public class UserController {
     public ResponseEntity<?> forgotPassword(@RequestBody Map<String, String> request) {
         try {
             String email = request.get("email");
-            String resetCode = userService.initiatePasswordReset(email);
+            userService.initiatePasswordReset(email);
             
             Map<String, String> response = new HashMap<>();
-            response.put("message", "Reset code sent to your email");
-            // For development/testing - remove in production
-            response.put("resetCode", resetCode);
+            response.put("message", "If an account exists with this email, a reset code has been sent.");
             
             return ResponseEntity.ok(response);
         } catch (RuntimeException e) {

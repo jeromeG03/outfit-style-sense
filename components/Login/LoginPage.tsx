@@ -20,7 +20,6 @@ const LoginPage: React.FC = () => {
   const [resetLoading, setResetLoading] = useState(false);
   const [resetError, setResetError] = useState('');
   const [resetSuccess, setResetSuccess] = useState('');
-  const [displayResetCode, setDisplayResetCode] = useState<string>('');
   
   const navigate = useNavigate();
   const { login } = useAuth();
@@ -80,11 +79,7 @@ const LoginPage: React.FC = () => {
         }
 
         const data = await response.json();
-        setDisplayResetCode(data.resetCode || '');
-        setResetSuccess(data.resetCode 
-          ? 'Reset code generated! If email delivery fails, use the code shown below.' 
-          : 'Reset code sent to your email!');
-        console.log('Reset code for testing:', data.resetCode);
+        setResetSuccess('Reset code has been sent to your email. Please check your inbox (and spam folder).');
         setResetStep('code');
       } else if (resetStep === 'code') {
         // Verify reset code
@@ -135,7 +130,6 @@ const LoginPage: React.FC = () => {
     setResetStep('email');
     setResetError('');
     setResetSuccess('');
-    setDisplayResetCode('');
   };
 
   return (
@@ -273,13 +267,6 @@ const LoginPage: React.FC = () => {
                   <label className="block text-xs font-bold text-stone-400 uppercase tracking-widest mb-2">
                     Reset Code
                   </label>
-                  {displayResetCode && (
-                    <div className="mb-3 p-4 bg-amber-50 border-2 border-amber-200 rounded-xl">
-                      <p className="text-xs text-amber-800 font-semibold mb-1">Your Reset Code:</p>
-                      <p className="text-3xl font-bold text-amber-900 text-center tracking-widest">{displayResetCode}</p>
-                      <p className="text-xs text-amber-700 mt-1 text-center">Copy this code and enter below</p>
-                    </div>
-                  )}
                   <input
                     type="text"
                     required
@@ -289,7 +276,7 @@ const LoginPage: React.FC = () => {
                     placeholder="000000"
                     className="w-full bg-stone-50 border border-stone-200 px-4 py-3 rounded-xl focus:ring-2 focus:ring-amber-800/20 focus:border-amber-800 outline-none transition-all text-center text-2xl tracking-widest font-bold"
                   />
-                  <p className="text-xs text-stone-500 mt-2">Code expires in 15 minutes</p>
+                  <p className="text-xs text-stone-500 mt-2">Code expires in 15 minutes. Check your email inbox and spam folder.</p>
                 </div>
               )}
 

@@ -72,10 +72,11 @@ public class UserService {
     }
 
     @Transactional
-    public String initiatePasswordReset(String email) {
+    public void initiatePasswordReset(String email) {
         Optional<User> userOpt = userRepository.findByEmail(email);
         if (userOpt.isEmpty()) {
-            throw new RuntimeException("No account found with this email");
+            // Don't reveal if email exists or not (security best practice)
+            return;
         }
 
         // Delete any existing unused tokens for this email
@@ -90,10 +91,8 @@ public class UserService {
         token.setToken(resetCode);
         resetTokenRepository.save(token);
 
-        // Send email
+        // Send email - this will throw exception if email fails
         emailService.sendPasswordResetEmail(email, resetCode);
-
-        return resetCode; // For testing/development, remove in production
     }
 
     @Transactional

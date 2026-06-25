@@ -16,19 +16,13 @@ public class EmailService {
     private String fromEmail;
 
     public void sendPasswordResetEmail(String toEmail, String resetCode) {
-        try {
-            if (mailSender == null) {
-                // For development/demo: just log the code
-                System.out.println("=================================================");
-                System.out.println("⚠️  EMAIL SERVICE NOT CONFIGURED");
-                System.out.println("PASSWORD RESET CODE FOR: " + toEmail);
-                System.out.println("RESET CODE: " + resetCode);
-                System.out.println("This code is valid for 15 minutes");
-                System.out.println("Note: Configure email in Railway variables to send actual emails");
-                System.out.println("=================================================");
-                return;
-            }
+        if (mailSender == null) {
+            System.err.println("❌ CRITICAL: Email service is not configured!");
+            System.err.println("Please configure email settings in Railway environment variables.");
+            throw new RuntimeException("Email service is not available. Please contact support.");
+        }
 
+        try {
             SimpleMailMessage message = new SimpleMailMessage();
             message.setFrom(fromEmail);
             message.setTo(toEmail);
@@ -38,15 +32,10 @@ public class EmailService {
             mailSender.send(message);
             System.out.println("✅ Password reset email sent successfully to: " + toEmail);
         } catch (Exception e) {
-            System.err.println("❌ Failed to send email to " + toEmail + ": " + e.getMessage());
+            System.err.println("❌ Failed to send email to " + toEmail);
+            System.err.println("Error: " + e.getMessage());
             e.printStackTrace();
-            // Fallback: print to console for development
-            System.out.println("=================================================");
-            System.out.println("⚠️  EMAIL DELIVERY FAILED - SHOWING CODE");
-            System.out.println("PASSWORD RESET CODE FOR: " + toEmail);
-            System.out.println("RESET CODE: " + resetCode);
-            System.out.println("Error: " + e.getMessage());
-            System.out.println("=================================================");
+            throw new RuntimeException("Failed to send reset email. Please try again later or contact support.");
         }
     }
 
